@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:include="~{inc/fragments :: header}">
+    <title>登录</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>登录</h1>
+            <p>
+                <a href="/">返回首页</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <form onsubmit="doLogin();return false;">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script language="JavaScript" th:inline="javascript">
+
+    function doLogin() {
+        var info = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        };
+
+        $.ajax({
+            url: '/api/user/login',
+            method: 'GET',
+            contentType: 'application/json;charset=utf-8',
+            data: JSON.stringify(info),
+            success: function () {
+                window.location.href = '/';
+            },
+            error: function () {
+                console.info('ajax 请求失败');
+            }
+        });
+    };
+</script>
+</body>
+</html>

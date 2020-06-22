@@ -28,11 +28,12 @@ CREATE TABLE `seat` (
                         PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = `utf8mb4` AUTO_INCREMENT = 1 COMMENT ='座位表';
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
                         `id`         INT(10)   NOT NULL AUTO_INCREMENT,
                         `user_id`    INT(10)   NULL DEFAULT 0 COMMENT '用户ID',
                         `seat_id`    INT(10)   NULL DEFAULT 0 COMMENT '座位ID',
                         `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                        `duration_at` TIMESTAMP NOT NULL COMMENT '座位锁定开始时间',
                         `duration`   TINYINT(2) NOT NULL DEFAULT 1 COMMENT '座位预定时长',
                         `actived`    TINYINT(1) NOT NULL DEFAULT 1 COMMENT '订单状态',
                         PRIMARY KEY (`id`)

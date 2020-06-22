@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:include="~{inc/fragments :: header}">
+    <title>首页</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3>这是首页</h3>
+        </div>
+        <div class="row" th:if="${user} == null">
+            <a href="/api/user/login" ><button type="button" class="btn btn-primary">登录</button></a>
+        </div>
+        <div class="row" th:if="${user} != null">
+            <span th:text="${user.getUsername()}"></span>
+            <a href="/logout" ><button type="button" class="btn btn-primary">注销</button></a>
+        </div>
+
+    </div>
+</body>
+</html>
