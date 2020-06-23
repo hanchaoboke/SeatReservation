@@ -7,6 +7,7 @@ import club.banyuan.reservation.model.User;
 import club.banyuan.reservation.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -42,15 +43,27 @@ public class UserController {
             return CommonResult.failed("用户名或密码错误");
         }
 
+//          如果是管理员？
+//        if (user.getFlag() == true) {
+//
+//        }
+
         // 用户存进Session
         session.setAttribute("user",user);
         return CommonResult.success("OK");
     }
 
-    @PostMapping(value = "/api/user/create")
+    @PostMapping(value = "/create")
     public CommonResult create (@RequestBody User user) {
+
+        // 用户名和密码不能为空
+        if (StringUtils.isEmpty(user.getUsername()) || StringUtils.isEmpty(user.getPassword())) {
+            return CommonResult.failed("注册失败!");
+        }
+
         user.setActived(true);
         userMapper.insertSelective(user);
         return CommonResult.success("OK");
     }
+
 }

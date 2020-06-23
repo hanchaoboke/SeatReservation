@@ -10,11 +10,12 @@ CREATE TABLE `user` (
                         `id`         INT(10)   NOT NULL AUTO_INCREMENT,
                         `username`   VARCHAR(64)        DEFAULT '' UNIQUE COMMENT '用户名',
                         `password`   VARCHAR(64)        DEFAULT '' COMMENT '密码',
-                        `phone`      VARCHAR(20)  NULL  DEFAULT '' UNIQUE COMMENT '手机号',
-                        `email`      VARCHAR(50)  NULL  DEFAULT '' UNIQUE COMMENT '电子邮箱',
+                        `phone`      VARCHAR(20)  NULL  DEFAULT ''  COMMENT '手机号',
+                        `email`      VARCHAR(50)  NULL  DEFAULT ''  COMMENT '电子邮箱',
                         `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
                         `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
                         `actived`    TINYINT(1) NOT NULL DEFAULT 0 COMMENT '激活状态',
+                        `flag`       TINYINT(1) NOT NULL DEFAULT 0 COMMENT '用户身份',
                         PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = `utf8mb4` AUTO_INCREMENT = 1000 COMMENT ='用户表';
 

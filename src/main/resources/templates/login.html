@@ -30,6 +30,7 @@
     </div>
 </div>
 
+<div th:include="~{inc/fragments :: js}">
 <script language="JavaScript" th:inline="javascript">
 
     function doLogin() {
@@ -52,5 +53,6 @@
         });
     };
 </script>
+</div>
 </body>
 </html>

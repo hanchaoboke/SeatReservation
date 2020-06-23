@@ -8,6 +8,7 @@ package club.banyuan.reservation.dto;
 public class SeatParm {
     private Integer id;
     private Byte actived;
+    private Boolean repair;
 
     public Integer getId() {
         return id;
@@ -23,5 +24,13 @@ public class SeatParm {
 
     public void setActived(Byte actived) {
         this.actived = actived;
+    }
+
+    public Boolean getRepair() {
+        return repair;
+    }
+
+    public void setRepair(Boolean repair) {
+        this.repair = repair;
     }
 }

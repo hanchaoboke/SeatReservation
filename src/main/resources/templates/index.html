@@ -9,7 +9,7 @@
             <h3>这是首页</h3>
         </div>
         <div class="row" th:if="${user} == null">
-            <a href="/api/user/login" ><button type="button" class="btn btn-primary">登录</button></a>
+            <a href="/login" ><button type="button" class="btn btn-primary">登录</button></a>
         </div>
         <div class="row" th:if="${user} != null">
             <span th:text="${user.getUsername()}"></span>
