@@ -1,0 +1,47 @@
+{
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "position": {
+            "name": "1号座位",
+            "status": 1
+        },
+        "bookHours": [
+            {
+                "date": "2020-06-23",
+                "hour": 14,
+                "hasBooked": false
+            },
+            {
+                "date": "2020-06-23",
+                "hour": 15,
+                "hasBooked": false
+            },
+            {
+                "date": "2020-06-23",
+                "hour": 16,
+                "hasBooked": false
+            },
+            {
+                "date": "2020-06-23",
+                "hour": 17,
+                "hasBooked": true
+            },
+            {
+                "date": "2020-06-23",
+                "hour": 18,
+                "hasBooked": false
+            },
+            {
+                "date": "2020-06-23",
+                "hour": 19,
+                "hasBooked": false
+            },
+            {
+                "date": "2020-06-24",
+                "hour": 8,
+                "hasBooked": true
+            }
+        ]
+    }
+}

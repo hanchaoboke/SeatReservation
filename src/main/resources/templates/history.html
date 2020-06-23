@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自习室预订</title>
+    <link rel="stylesheet" href="/static/jquery-weui/lib/weui.min.css">
+    <link rel="stylesheet" href="/static/jquery-weui/css/jquery-weui.min.css">
+    <style>
+        .page-title {
+            text-align: center;
+            font-size: 34px;
+            color: #3cc51f;
+            font-weight: 400;
+            margin: 0 15%;
+        }
+
+        .btn-cancel {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+<header style="padding: 35px 0;">
+    <h1 class="page-title">预约历史</h1>
+</header>
+
+<div class="weui-btn-area">
+    <a href="/studyroom/index" class="weui-btn weui-btn_plain-primary">返回首页</a>
+</div>
+
+<div class="weui-panel__bd" id="records">
+</div>
+
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/jquery-weui/js/jquery-weui.min.js"></script>
+<script>
+    function generateTimeRange(date, hour) {
+        var preHour = hour - 1;
+        return date + ' ' + preHour + ':00~' + hour + ':00';
+    }
+
+    function getCancelFlagText(cancelFlag) {
+        if (cancelFlag) {
+            return '已取消'
+        } else {
+            return '正常预约';
+        }
+    }
+
+    $(document).ready(function () {
+        // 加载当前用户的所有预约记录
+        $.get('/static/mockData/records.json', function (resp) {
+            if (resp.code === 200) {
+                var html = '';
+                resp.data.map(function (item) {
+                    var cancelBtn = '<a href="javascript: cancelRecord(' + item.id + ');" class="weui-btn weui-btn_mini weui-btn_warn btn-cancel">取消预约</a>';
+                    if (item.cancelFlag) {
+                        cancelBtn = '';
+                    }
+                    html += '<div class="weui-media-box weui-media-box_text">' +
+                        '        <h4 class="weui-media-box__title">' + item.position.name
+                        + cancelBtn +
+                        '</h4>' +
+                        '        <p class="weui-media-box__desc">使用时间: ' + generateTimeRange(item.date, item.hour) + '</p>' +
+                        '        <ul class="weui-media-box__info">' +
+                        '            <li class="weui-media-box__info__meta">状态: ' + getCancelFlagText(item.cancelFlag) + '</li>' +
+                        '            <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">预约时间: ' + item.createdAt + '</li>' +
+                        '        </ul>' +
+                        '    </div>';
+                });
+                $('#records').html(html);
+            } else {
+                $.toast('预约记录信息加载失败![' + resp.message + ']', 'cancel');
+            }
+        });
+    });
+
+    function cancelRecord(id) {
+        console.info('取消预约记录: ' + id);
+    }
+</script>
+</body>
+</html>

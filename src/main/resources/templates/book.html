@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自习室预订</title>
+    <link rel="stylesheet" href="/static/jquery-weui/lib/weui.min.css">
+    <link rel="stylesheet" href="/static/jquery-weui/css/jquery-weui.min.css">
+    <style>
+        .page-title {
+            text-align: center;
+            font-size: 34px;
+            color: #3cc51f;
+            font-weight: 400;
+            margin: 0 15%;
+        }
+
+        #positions {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<header style="padding: 35px 0;">
+    <h1 class="page-title">立即预约</h1>
+</header>
+
+<div class="weui-btn-area">
+    <a href="/studyroom/index" class="weui-btn weui-btn_plain-primary">返回首页</a>
+</div>
+
+<div class="weui-grids" id="positions">
+</div>
+
+<div id="selectTimeRange" class="weui-popup__container">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+        <div class="weui-cells__title">当前选择位置：<span id="selectedPositionName"></span></div>
+        <div class="weui-cells__title">选择预约时间</div>
+        <div class="weui-cells weui-cells_checkbox" id="timeRanges">
+        </div>
+
+        <div class="weui-btn-area">
+            <a href="#" class="weui-btn weui-btn_plain-primary close-popup">取消</a>
+            <a href="javascript: submitBookInfo()" class="weui-btn weui-btn_plain-primary">提交</a>
+        </div>
+    </div>
+</div>
+
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/jquery-weui/js/jquery-weui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 加载自习室所有位置
+        $.get('/static/mockData/positions.json', function (resp) {
+            if (resp.code === 200) {
+                var html = '';
+                resp.data.map(function (item) {
+                    html += '<a href="javascript: selectPosition(' + item.id + ')" class="weui-grid js_grid">' +
+                        '        <div class="weui-grid__icon">' +
+                        '            <img src="/static/img/position-green.png" alt="">' +
+                        '        </div>' +
+                        '        <p class="weui-grid__label">' +
+                        '            选择' + item.name +
+                        '        </p>' +
+                        '    </a>'
+                });
+                $('#positions').html(html);
+            } else {
+                $.toast('位置信息加载失败![' + resp.message + ']', 'cancel');
+            }
+        });
+    });
+
+    function convertHour2Text(hour) {
+        var preHour = hour - 1;
+        return preHour + ':00~' + hour + ':00';
+    }
+
+    function selectPosition(id) {
+        console.info('选择了座位: ' + id);
+        $.get('/static/mockData/positionRecords.json', function (resp) {
+            console.info(resp);
+            if (resp.code === 200) {
+                $('#selectedPositionName').html(resp.data.position.name);
+
+                var html = '';
+                resp.data.bookHours.map(function (item) {
+                    if (item.hasBooked) {
+                        html += '<label class="weui-cell weui-check__label" for="tr-' + item.hour + '">' +
+                            '                <div class="weui-cell__hd"><i class="weui-icon-cancel"></i>' +
+                            '                </div>' +
+                            '                <div class="weui-cell__bd">' +
+                            '                    <p>' + item.date + ' ' + convertHour2Text(item.hour) + ' (已被预约)</p>' +
+                            '                </div>' +
+                            '            </label>';
+                    } else {
+                        html += '<label class="weui-cell weui-check__label" for="tr-' + item.hour + '">' +
+                            '                <div class="weui-cell__hd">' +
+                            '                    <input type="checkbox" class="weui-check" name="hours" id="tr-' + item.hour + '"><i class="weui-icon-checked"></i>' +
+                            '                </div>' +
+                            '                <div class="weui-cell__bd">' +
+                            '                    <p>' + item.date + ' ' + convertHour2Text(item.hour) + '</p>' +
+                            '                </div>' +
+                            '            </label>';
+                    }
+
+                });
+                $('#timeRanges').html(html);
+
+                $("#selectTimeRange").popup();
+            } else {
+                $.toast('位置预约信息加载失败![' + resp.message + ']', 'cancel');
+            }
+        });
+    }
+
+    function submitBookInfo() {
+        console.info('提交预订信息');
+
+        // 提交成功
+        // $.toptip('预约成功', 'success');  //设置显示时间
+        $.toptip('预约失败', 'error');
+        // $.toptip('警告信息', 'warning');
+        $.closePopup();
+    }
+</script>
+</body>
+</html>

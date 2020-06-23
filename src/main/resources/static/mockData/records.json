@@ -1,0 +1,62 @@
+{
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "userId": 1,
+            "positionId": 1,
+            "position": {
+                "name": "1号座位",
+                "status": 1
+            },
+            "date": "2020-06-23",
+            "hour": 20,
+            "cancelFlag": false,
+            "createdAt": "2020-06-22 12:12",
+            "updatedAt": "2020-06-22 12:12"
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "positionId": 1,
+            "position": {
+                "name": "1号座位",
+                "status": 1
+            },
+            "date": "2020-06-23",
+            "hour": 21,
+            "cancelFlag": false,
+            "createdAt": "2020-06-22 12:12",
+            "updatedAt": "2020-06-22 12:12"
+        },
+        {
+            "id": 3,
+            "userId": 1,
+            "positionId": 1,
+            "position": {
+                "name": "1号座位",
+                "status": 1
+            },
+            "date": "2020-06-23",
+            "hour": 22,
+            "cancelFlag": true,
+            "createdAt": "2020-06-22 12:12",
+            "updatedAt": "2020-06-22 14:29"
+        },
+        {
+            "id": 4,
+            "userId": 1,
+            "positionId": 1,
+            "position": {
+                "name": "2号座位",
+                "status": 1
+            },
+            "date": "2020-06-23",
+            "hour": 23,
+            "cancelFlag": false,
+            "createdAt": "2020-06-22 12:12",
+            "updatedAt": "2020-06-22 14:29"
+        }
+    ]
+}

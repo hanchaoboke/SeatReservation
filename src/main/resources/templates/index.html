@@ -1,21 +1,61 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
-<head th:include="~{inc/fragments :: header}">
-    <title>首页</title>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自习室预订</title>
+    <link rel="stylesheet" href="/static/jquery-weui/lib/weui.min.css">
+    <link rel="stylesheet" href="/static/jquery-weui/css/jquery-weui.min.css">
+    <style>
+        .page-title {
+            text-align: center;
+            font-size: 34px;
+            color: #3cc51f;
+            font-weight: 400;
+            margin: 0 15%;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <h3>这是首页</h3>
-        </div>
-        <div class="row" th:if="${user} == null">
-            <a href="/login" ><button type="button" class="btn btn-primary">登录</button></a>
-        </div>
-        <div class="row" th:if="${user} != null">
-            <span th:text="${user.getUsername()}"></span>
-            <a href="/logout" ><button type="button" class="btn btn-primary">注销</button></a>
-        </div>
 
-    </div>
+<header style="padding: 35px 0;">
+    <h1 class="page-title">自习室预约</h1>
+</header>
+
+<div class="weui-grids">
+    <a href="/studyroom/book" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="/static/img/booking.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+            立即预约
+        </p>
+    </a>
+    <a href="/studyroom/history" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="/static/img/history.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+            预约历史
+        </p>
+    </a>
+    <a href="javascript: showAbout();" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="/static/img/info.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+            关于我们
+        </p>
+    </a>
+</div>
+
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/jquery-weui/js/jquery-weui.min.js"></script>
+<script>
+    function showAbout() {
+        $.alert('自习室预订系统 V1.0', '关于');
+    }
+</script>
 </body>
 </html>

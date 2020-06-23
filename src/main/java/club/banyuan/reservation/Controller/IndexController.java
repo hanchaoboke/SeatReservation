@@ -22,8 +22,8 @@ public class IndexController {
     public String index (HttpSession session,
                          Model model) {
 
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user",user);
+//        User user = (User) session.getAttribute("user");
+//        model.addAttribute("user",user);
         return "index";
     }
 
@@ -34,6 +34,12 @@ public class IndexController {
     public String login () {
         return "login";
     }
+
+    /**
+     * 注册
+     */
+    @GetMapping(value = "/register")
+    public String register () { return "register"; }
 
     /**
      * 注销

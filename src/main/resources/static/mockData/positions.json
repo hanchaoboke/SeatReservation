@@ -1,0 +1,41 @@
+{
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "name": "1号座位",
+            "status": 1
+        },
+        {
+            "id": 2,
+            "name": "2号座位",
+            "status": 1
+        },
+        {
+            "id": 3,
+            "name": "3号座位",
+            "status": 1
+        },
+        {
+            "id": 4,
+            "name": "4号座位",
+            "status": 1
+        },
+        {
+            "id": 5,
+            "name": "5号座位",
+            "status": 1
+        },
+        {
+            "id": 6,
+            "name": "6号座位",
+            "status": 1
+        },
+        {
+            "id": 7,
+            "name": "7号座位",
+            "status": 1
+        }
+    ]
+}
