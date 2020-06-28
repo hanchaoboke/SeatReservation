@@ -28,7 +28,7 @@
 </header>
 
 <div class="weui-btn-area">
-    <a href="/studyroom/index" class="weui-btn weui-btn_plain-primary">返回首页</a>
+    <a href="/" class="weui-btn weui-btn_plain-primary">返回首页</a>
 </div>
 
 <div class="weui-grids" id="positions">
@@ -54,7 +54,7 @@
 <script>
     $(document).ready(function () {
         // 加载自习室所有位置
-        $.get('/static/mockData/positions.json', function (resp) {
+        $.get('/api/book/list', function (resp) {
             if (resp.code === 200) {
                 var html = '';
                 resp.data.map(function (item) {
@@ -81,7 +81,7 @@
 
     function selectPosition(id) {
         console.info('选择了座位: ' + id);
-        $.get('/static/mockData/positionRecords.json', function (resp) {
+        $.post('/api/book/res/' + id, function (resp) {
             console.info(resp);
             if (resp.code === 200) {
                 $('#selectedPositionName').html(resp.data.position.name);

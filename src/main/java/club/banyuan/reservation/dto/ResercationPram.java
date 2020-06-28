@@ -1,6 +1,8 @@
 package club.banyuan.reservation.dto;
 
 import club.banyuan.reservation.model.Seat;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
@@ -9,34 +11,17 @@ import java.sql.Timestamp;
  * @date 2020-06-22 20:45
  * 描述信息：
  */
-public class ResercationPram extends Seat {
-
+@Getter
+@Setter
+public class ResercationPram{
+    private Integer id;
     private Integer userId;
-    private Byte duration;
-//    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private String durationAt;
+    private Integer positionId;
+    private position position;
+    private String date;
+    private Integer hour;
+    private Boolean cancelFlag;
+    private String createdAt;
+    private String updatedAt;
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Byte getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Byte duration) {
-        this.duration = duration;
-    }
-
-    public String getDurationAt() {
-        return durationAt;
-    }
-
-    public void setDurationAt(String durationAt) {
-        this.durationAt = durationAt;
-    }
 }

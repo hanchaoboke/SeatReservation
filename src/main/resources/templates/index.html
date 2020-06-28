@@ -24,7 +24,23 @@
 </header>
 
 <div class="weui-grids">
-    <a href="/studyroom/book" class="weui-grid js_grid">
+    <a href="/login" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="/static/img/Nav04-customer.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+            登录
+        </p>
+    </a>
+    <a href="/register" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <img src="/static/img/Nav03-hrstaff.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+            注册
+        </p>
+    </a>
+    <a href="/book" class="weui-grid js_grid">
         <div class="weui-grid__icon">
             <img src="/static/img/booking.png" alt="">
         </div>
@@ -32,7 +48,7 @@
             立即预约
         </p>
     </a>
-    <a href="/studyroom/history" class="weui-grid js_grid">
+    <a href="/history" class="weui-grid js_grid">
         <div class="weui-grid__icon">
             <img src="/static/img/history.png" alt="">
         </div>
@@ -56,6 +72,8 @@
     function showAbout() {
         $.alert('自习室预订系统 V1.0', '关于');
     }
+    
+
 </script>
 </body>
 </html>

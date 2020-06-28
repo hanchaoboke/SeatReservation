@@ -49,4 +49,20 @@ public class IndexController {
         session.removeAttribute("user");
         return "redirect:/";
     }
+
+    /**
+     * 预约历史
+     */
+    @GetMapping(value = "/history")
+    public String history () {
+        return "history";
+    }
+
+    /**
+     * book
+     */
+    @GetMapping(value = "/book")
+    public String book () {
+        return "book";
+    }
 }

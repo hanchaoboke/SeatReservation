@@ -1,6 +1,10 @@
 package club.banyuan.reservation.demo;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
+
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author HanChao
@@ -9,8 +13,15 @@ import java.sql.Timestamp;
  */
 public class time {
     public static void main(String[] args) {
-        String str = "2010-12-12 14:23:22";
-        Timestamp t1 = Timestamp.valueOf(str);
-        System.out.println(t1);
+        DateTime time = DateTime.now();
+        System.out.println(time);
+        int dat = time.hour(true);
+        System.out.println(dat);
+
+
+        int hour = DateUtil.hour(time,true);
+        System.out.println(hour);
+
+
     }
 }

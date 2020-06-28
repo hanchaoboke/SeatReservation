@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping(value = "/login")
+    @PostMapping(value = "/login")
     public CommonResult login (@RequestBody UserParam userParam,
                                HttpSession session) {
 
@@ -42,6 +42,7 @@ public class UserController {
         if (!user.getPassword().equals(userParam.getPassword())) {
             return CommonResult.failed("用户名或密码错误");
         }
+
 
 //          如果是管理员？
 //        if (user.getFlag() == true) {

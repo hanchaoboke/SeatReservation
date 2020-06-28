@@ -28,7 +28,7 @@
 </header>
 
 <div class="weui-btn-area">
-    <a href="/studyroom/index" class="weui-btn weui-btn_plain-primary">返回首页</a>
+    <a href="/" class="weui-btn weui-btn_plain-primary">返回首页</a>
 </div>
 
 <div class="weui-panel__bd" id="records">
@@ -52,7 +52,7 @@
 
     $(document).ready(function () {
         // 加载当前用户的所有预约记录
-        $.get('/static/mockData/records.json', function (resp) {
+        $.get('/api/order/gistory'+, function (resp) {
             if (resp.code === 200) {
                 var html = '';
                 resp.data.map(function (item) {
